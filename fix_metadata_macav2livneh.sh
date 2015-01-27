@@ -4,15 +4,11 @@
 #http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/formats/DataDiscoveryAttConvention.html
 #and consistent with other projects in Integrate Scenarios of Pacific Northwest
 
-#Questions: 
-#time.standardname
-#time.longname
-
 #========================================================
 #    REPLACEMENTS
 #========================================================
-TITLE='3PG vegetation simulations using MACAv2-LIVNEH CMIP5 forcings over the western USA.';  #describes project
-SUMMARY='This archive contains decadal timestep and 4-km resolution vegetation outputs for the western United States produced by 3-PG(Physiological Principles for Predicting Growth) vegetation simulations. The simulations were forced by Multivariate Adaptive Constructed Analogs (MACA, Abatzoglou, 2012) statistical downscaling of Global Climate Models and trained to METDATA (Abatzoglou, 2012) gridded surface observations.3-PG (Physiological Principles for Predicting Growth) is a process model that employs a light-use-efficiency based photosynthesis algorithm to simulate the change in net primary production over forest succession.  Monthly weather data is used to constrain photosynthesis based on high daytime atmospheric vapor pressure deficit, subfreezing temperatures, suboptimal temperatures, and soil water deficits.  Here we ran the model using climate output from the GFDL-ESM2M_rcp45 scenario associated with 5th IPCC Report.  The climate model data was downscaled to the 4 km resolution using the MACA (Multivariate Adapted Constructed Analogue) approach. A 3-PG model run (e.g. Coops et al. 2010) consists of a 50 year simulation of forest succession using a decade of climate data that is recycled five times. Thus we produced spatial output on the potential leaf area index(LAI), wood mass(WS), net primary production(NPP) of a 50 year old conifer forest for each decade from the 1950s to the 2090s. Results here are provisional and may be updated after publication.';
+TITLE='MACAv2-LIVNEH statistically downscaled climate simulations using CMIP5 forcings over the contiguous USA.';  #describes project
+SUMMARY='This archive contains daily timestep and 1/16-deg resolution meteorological outputs for the contiguous United States produced by MACAv2-LIVNEH(Multivariate Adaptive Constructed Analogs) statistical downscaling method by Abatzoglou, Brown, 2011 performed on daily outputs from global climate model simulations of the the historical (1950-2005) and future RCP4.5/8.5 (2006-2099) scenarios from Phase 5 of the Coupled Model Intercomparison Project (CMIP5) utilizing the Livneh et al (2013) training dataset.  Leap days have been added to the dataset from the average values between Feb 28 and Mar 1 in order to aid modellers.';
 KEYWORDS='3PG,MACA,CMIP5,Net Primary Production, NPP,Woody Stem Mass, Leaf Area Index, LAI'; #variable in collection should be listed here
 
 #=============
@@ -20,32 +16,33 @@ KEYWORDS='3PG,MACA,CMIP5,Net Primary Production, NPP,Woody Stem Mass, Leaf Area 
 #=============
 ID='';  #leave blank, NKN will have to fix later
 NAMINGAUTHORITY="edu.uidaho.nkn"
-#KEYWORDS_VOCABULARY="None"
+KEYWORDS_VOCABULARY="None"
 CDM_DATA_TYPE='GRID';
-HISTORY="No Revisions"
-COMMENT="The projection information for this file is GCS WGS 1984."   #probably we should agree to add the crs variable to give projection
+HISTORY="Revision 1: The leap years in the previous version were corrected, as they had been set to the first year in each datafile erroneously upon making the netcdf files."
+#COMMENT=""   
 
-DATE_CREATED="2014-08-06"
-CREATOR_NAME='David Turner';
-CREATOR_URL='http://www.occri.edu'
+DATE_CREATED="2014-02-01"
+CREATOR_NAME='John Abatzoglou';
+CREATOR_URL='http://climate.nkn.uidaho.edu/MACA/'
 CREATOR_ROLE='Principal Investigator';
-CREATOR_EMAIL='david.turner@oregonstate.edu';
-#INSTITUTION="Oregon State University";
+CREATOR_EMAIL='jabatzoglou@uidaho.edu';
+#INSTITUTION="University of Idaho";
 #PROJECT="Integrated Scenarios Project of the Northwest Climate Sciences Center"
-PROCESSING_LEVEL='Gridded Vegetation Projections';
+PROCESSING_LEVEL='Gridded Climate Projections';
 ACKNOWLEDGMENT="Please reference the Northwest Climate Science Center (NW CSC) US Geological Survey Grant Number G11AC20256 and the references included herein. We acknowledge the World Climate Research Programme's Working Group on Coupled Modelling, which is responsible for CMIP, and we thank the climate modeling groups for producing and making available their model output. For CMIP the U.S. Department of Energy's Program for Climate Model Diagnosis and Intercomparison provides coordinating support and led development of software infrastructure in partnership with the Global Organization for Earth System Science Portals.";
 
-#GEOSPATIAL_LAT_MIN=31
-#GEOSPATIAL_LAT_MAX=49.4
-#GEOSPATIAL_LON_MIN=-103
+#GEOSPATIAL_LAT_MIN=25.2
+#GEOSPATIAL_LAT_MAX=52.8
+#GEOSPATIAL_LON_MIN=-67
 #GEOSPATIAL_LON_MAX=-125
 #GEOSPATIAL_VERTICAL_MIN=0
 #GEOSPATIAL_VERTICAL_MAX=0
 
-TIME_COVERAGE_START='1950-01-01T00:00';
-TIME_COVERAGE_END='2099-12-31T00:00'
-TIME_COVERAGE_DURATION='P150Y';
-TIME_COVERAGE_RESOLUTION='P10Y';
+#these vary depending on the file, but this is done correctly in the current files
+#TIME_COVERAGE_START='1950-01-01T00:00';
+#TIME_COVERAGE_END='2099-12-31T00:00'
+#TIME_COVERAGE_DURATION='P150Y';
+#TIME_COVERAGE_RESOLUTION='P10Y';
 
 STANDARD_NAME_VOCABULARY='CF-1.0';
 LICENSE='No restrictions';
@@ -53,20 +50,20 @@ LICENSE='No restrictions';
 #=============
 #  SUGGESTED 
 #=============
-CONTRIBUTOR_NAME='Darrin Sharpe';
-CONTRIBUTOR_ROLE='Research Assistant';
-CONTRIBUTOR_EMAIL='dsharp@coas.oregonstate.edu';
+CONTRIBUTOR_NAME='Katherine Hegewisch';
+CONTRIBUTOR_ROLE='Postdoctoral Fellow';
+CONTRIBUTOR_EMAIL='khegewisch@uidaho.edu';
 PUBLISHERNAME="Northwest Knowledge Network"
 PUBLISHEREMAIL="info@northwestknowledge.net"
 PUBLISHERURL="http://www.northwestknowledge.net"
 
-DATE_MODIFIED ='2014-08-06'
-DATE_ISSUED ='2014-08-06'
+DATE_MODIFIED ='2014-09-22'
+DATE_ISSUED ='2014-09-22'
 
 GEOSPATIAL_LAT_UNITS='decimal degrees north'
 GEOSPATIAL_LON_UNITS='decimal degrees east'
-GEOSPATIAL_LAT_RESOLUTION='Only applicable in rotated coordinates. See "geospatial comment".' #??????
-GEOSPATIAL_LON_RESOLUTION='Only applicable in rotated coordinates. See "geospatial comment".' #??????
+GEOSPATIAL_LAT_RESOLUTION='0.0625'
+GEOSPATIAL_LON_RESOLUTION='0.0625'
 GEOSPATIAL_VERTICAL_UNITS='None'
 GEOSPATIAL_VERTICAL_RESOLUTION='0'
 GEOSPATIAL_VERTICAL_POSITIVE='Up'
@@ -74,7 +71,8 @@ GEOSPATIAL_VERTICAL_POSITIVE='Up'
 #========================================================
 #    PERFORM REPLACEMENTS USING NCL
 #========================================================
-MODELS=("GFDL-ESM2M" "HadGEM2-ES" "MIROC5")
+MODELS=("CNRM-CM5" "CSIRO-Mk3-6-0" "inmcm4" "MIROC5" "bcc-csm1-1" "GFDL-ESM2G" "GFDL-ESM2M" "HadGEM2-ES365" "bcc-csm1-1-m" "BNU-ESM" "NorESM1-M" "MRI-CGCM3" "CCSM4" "MIROC-ESM" "IPSL-CM5B-LR" "MIROC-ESM-CHEM" "HadGEM2-CC365" "CanESM2" "IPSL-CM5A-MR" "IPSL-CM5A-LR")
+
 for model in "${MODELS[@]}"
 do
         cd "$model" 
