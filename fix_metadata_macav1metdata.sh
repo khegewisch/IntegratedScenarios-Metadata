@@ -7,9 +7,9 @@
 #========================================================
 #    REPLACEMENTS
 #========================================================
-TITLE='MACAv2-LIVNEH statistically downscaled climate simulations using CMIP5 forcings over the contiguous USA.';  #describes project
-SUMMARY='This archive contains daily timestep and 1/16-deg resolution meteorological outputs for the contiguous United States produced by MACAv2-LIVNEH(Multivariate Adaptive Constructed Analogs) statistical downscaling method by Abatzoglou, Brown, 2011 performed on daily outputs from global climate model simulations of the the historical (1950-2005) and future RCP4.5/8.5 (2006-2099) scenarios from Phase 5 of the Coupled Model Intercomparison Project (CMIP5) utilizing the Livneh et al (2013) training dataset.  Leap days have been added to the dataset from the average values between Feb 28 and Mar 1 in order to aid modellers.';
-KEYWORDS='MACA,CMIP5,METDATA,maximum temperature,minimum temperature, precipitation amount, downward shortwave solar radiation, wind speed, specific humidity';
+TITLE='MACAv1-METDATA statistically downscaled climate simulations using CMIP5 forcings over the contiguous USA.';  #describes project
+SUMMARY='This archive contains monthly timestep and 4-km resolution meteorological outputs for the western United States produced by MACAv1-METDATA(Multivariate Adaptive Constructed Analogs) statistical downscaling method by Abatzoglou, Brown, 2011 performed on daily outputs from global climate model simulations of the the historical (1950-2005) and future RCP4.5/8.5 (2006-2099) scenarios from Phase 5 of the Coupled Model Intercomparison Project (CMIP5) utilizing the Livneh et al (2013) training dataset.';
+KEYWORDS='MACA,CMIP5,METDATA,maximum temperature,minimum temperature, precipitation amount, downward shortwave solar radiation, wind components, specific humidity, relative humidity';
 
 #=============
 #  RECOMMENDED 
@@ -18,31 +18,31 @@ ID='';  #leave blank, NKN will have to fix later
 NAMINGAUTHORITY="edu.uidaho.nkn"
 KEYWORDS_VOCABULARY="None"
 CDM_DATA_TYPE='GRID';
-HISTORY="Revision 1: The leap years in the previous version were corrected, as they had been set to the first year in each datafile erroneously upon making the netcdf files."
+HISTORY="";
 #COMMENT=""   
 
-DATE_CREATED="2014-02-01"
+DATE_CREATED="?"   #need to check when it was original created
 CREATOR_NAME='John Abatzoglou';
 CREATOR_URL='http://climate.nkn.uidaho.edu/MACA/'
 CREATOR_ROLE='Principal Investigator';
 CREATOR_EMAIL='jabatzoglou@uidaho.edu';
 #INSTITUTION="University of Idaho";
-#PROJECT="Integrated Scenarios Project of the Northwest Climate Sciences Center"
+PROJECT="Regional Approaches to Climate Change(REACCH)"
 PROCESSING_LEVEL='Gridded Climate Projections';
-ACKNOWLEDGMENT="Please reference the Northwest Climate Science Center (NW CSC) US Geological Survey Grant Number G11AC20256 and the references included herein. We acknowledge the World Climate Research Programme's Working Group on Coupled Modelling, which is responsible for CMIP, and we thank the climate modeling groups for producing and making available their model output. For CMIP the U.S. Department of Energy's Program for Climate Model Diagnosis and Intercomparison provides coordinating support and led development of software infrastructure in partnership with the Global Organization for Earth System Science Portals.";
+ACKNOWLEDGMENT="Please reference the Regional Approaches to Climate Change (REACCH) Grant Number XXXXX? and the references included herein. We acknowledge the World Climate Research Programme's Working Group on Coupled Modelling, which is responsible for CMIP, and we thank the climate modeling groups for producing and making available their model output. For CMIP the U.S. Department of Energy's Program for Climate Model Diagnosis and Intercomparison provides coordinating support and led development of software infrastructure in partnership with the Global Organization for Earth System Science Portals.";
 
 #GEOSPATIAL_LAT_MIN=25.2
-#GEOSPATIAL_LAT_MAX=52.8
-#GEOSPATIAL_LON_MIN=-67
+#GEOSPATIAL_LAT_MAX=49.4
+#GEOSPATIAL_LON_MIN=-103
 #GEOSPATIAL_LON_MAX=-125
 #GEOSPATIAL_VERTICAL_MIN=0
 #GEOSPATIAL_VERTICAL_MAX=0
 
-#these vary depending on the file, but this is done correctly in the current files
+#these vary depending on the file, but this will have to be done file specific
 #TIME_COVERAGE_START='1950-01-01T00:00';
 #TIME_COVERAGE_END='2099-12-31T00:00'
-#TIME_COVERAGE_DURATION='P20Y';  #for most files except end ones
-#TIME_COVERAGE_RESOLUTION='P1D';
+#TIME_COVERAGE_DURATION='P10Y';    #for most files except end ones
+TIME_COVERAGE_RESOLUTION='P1D';
 
 STANDARD_NAME_VOCABULARY='CF-1.0';
 LICENSE='No restrictions';
@@ -57,13 +57,13 @@ PUBLISHERNAME="Northwest Knowledge Network"
 PUBLISHEREMAIL="info@northwestknowledge.net"
 PUBLISHERURL="http://www.northwestknowledge.net"
 
-DATE_MODIFIED ='2014-09-22'
-DATE_ISSUED ='2014-09-22'
+DATE_MODIFIED ='2014-07-01'
+DATE_ISSUED ='2014-07-01'
 
 GEOSPATIAL_LAT_UNITS='decimal degrees north'
 GEOSPATIAL_LON_UNITS='decimal degrees east'
-GEOSPATIAL_LAT_RESOLUTION='0.0625'
-GEOSPATIAL_LON_RESOLUTION='0.0625'
+GEOSPATIAL_LAT_RESOLUTION='0.0417'
+GEOSPATIAL_LON_RESOLUTION='0.0417'
 GEOSPATIAL_VERTICAL_UNITS='None'
 GEOSPATIAL_VERTICAL_RESOLUTION='0'
 GEOSPATIAL_VERTICAL_POSITIVE='Up'
@@ -71,7 +71,7 @@ GEOSPATIAL_VERTICAL_POSITIVE='Up'
 #========================================================
 #    PERFORM REPLACEMENTS USING NCL
 #========================================================
-MODELS=("CNRM-CM5" "CSIRO-Mk3-6-0" "inmcm4" "MIROC5" "bcc-csm1-1" "GFDL-ESM2G" "GFDL-ESM2M" "HadGEM2-ES365" "bcc-csm1-1-m" "BNU-ESM" "NorESM1-M" "MRI-CGCM3" "CCSM4" "MIROC-ESM" "IPSL-CM5B-LR" "MIROC-ESM-CHEM" "HadGEM2-CC365" "CanESM2" "IPSL-CM5A-MR" "IPSL-CM5A-LR")
+MODELS=("CNRM-CM5" "CSIRO-Mk3-6-0" "inmcm4" "MIROC5" "bcc-csm1-1" "GFDL-ESM2G" "GFDL-ESM2M" "HadGEM2-ES365" "bcc-csm1-1-m" "BNU-ESM" "NorESM1-M" "MRI-CGCM3" "CCSM4" "MIROC-ESM" "IPSL-CM5B-LR" "MIROC-ESM-CHEM" "HadGEM2-CC365" "CanESM2" "IPSL-CM5A-MR" "IPSL-CM5A-LR" "HadGEM2-ES" "HadGEM2-CC")
 
 for model in "${MODELS[@]}"
 do
