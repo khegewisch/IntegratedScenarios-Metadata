@@ -18,8 +18,9 @@ ID='';  #leave blank, NKN will have to fix later
 NAMINGAUTHORITY="edu.uidaho.nkn"
 KEYWORDS_VOCABULARY="None"
 CDM_DATA_TYPE='GRID';
-HISTORY="Revision 1: The leap years in the previous version were corrected, as they had been set to the first year in each datafile erroneously upon making the netcdf files."
-#COMMENT=""   
+HISTORY="Created by Katherine Hegewisch,University of Idaho, Department of Geography, Applied Climate Science Lab.Revision 1: The leap years in the previous version were corrected, as they had been set to the first year in each datafile erroneously upon making the netcdf files."
+#COMMENT="Daily outputs of the MACA downscaling of daily outputs from r1i1p1 ensemble, CCSM4 GCM (from University of Miami - RSMAS). The projection information for this file is GCS WGS 1984."   #probably we should agree to add the crs variable to give projection
+
 
 DATE_CREATED="2014-02-01"
 CREATOR_NAME='John Abatzoglou';

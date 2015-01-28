@@ -22,8 +22,9 @@ ID='';  #leave blank, NKN will have to fix later
 NAMINGAUTHORITY="edu.uidaho.nkn"
 #KEYWORDS_VOCABULARY="None"
 CDM_DATA_TYPE='GRID';
-HISTORY="No Revisions"
-COMMENT="The projection information for this file is GCS WGS 1984."   #probably we should agree to add the crs variable to give projection
+HISTORY="Created by Darrin Sharpe,Oregon State Climate Research Institute"
+#would need to run over the models and enter the right info here
+#COMMENT="Daily output of 3-PG simulation for historical scenario, r1i1p1 ensemble, CCSM4 GCM (from University of Miami - RSMAS). The projection information for this file is GCS WGS 1984."   #probably we should agree to add the crs variable to give projection
 
 DATE_CREATED="2014-08-06"
 CREATOR_NAME='David Turner';
