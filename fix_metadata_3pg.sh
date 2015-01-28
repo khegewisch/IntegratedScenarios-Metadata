@@ -4,6 +4,15 @@
 #http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/formats/DataDiscoveryAttConvention.html
 #and consistent with other projects in Integrate Scenarios of Pacific Northwest
 
+#notes: if the attribute is not currently in the file, we have to create the attribute with mode c like: 
+#ncatted -O -h -a publisher_email,global,c,c,"$PUBLISHEREMAIL" $i
+#whereas if it already exists, we just have to modify it with mode m like: 
+#ncatted -O -h -a publisher_email,global,m,c,"$PUBLISHEREMAIL" $i
+#however.. we can just use create c on everything and it will all work just fine
+#but if we know that the files already have a field, using mode m might increase the speed
+
+
+
 #Questions: 
 #time.standardname
 #time.longname
@@ -18,9 +27,9 @@ KEYWORDS='3PG,MACA,CMIP5,Net Primary Production, NPP,Woody Stem Mass, Leaf Area 
 #=============
 #  RECOMMENDED 
 #=============
-ID='';  #leave blank, NKN will have to fix later
+ID='Blank';  #leave blank, NKN will have to fix later
 NAMINGAUTHORITY="edu.uidaho.nkn"
-#KEYWORDS_VOCABULARY="None"
+KEYWORDS_VOCABULARY="None"
 CDM_DATA_TYPE='GRID';
 HISTORY="Created by Darrin Sharpe,Oregon State Climate Research Institute"
 #would need to run over the models and enter the right info here
@@ -31,11 +40,12 @@ CREATOR_NAME='David Turner';
 CREATOR_URL='http://www.occri.edu'
 CREATOR_ROLE='Principal Investigator';
 CREATOR_EMAIL='david.turner@oregonstate.edu';
-#INSTITUTION="Oregon State University";
-#PROJECT="Integrated Scenarios Project of the Northwest Climate Sciences Center"
+INSTITUTION="Oregon State University";
+PROJECT="Integrated Scenarios Project of the Northwest Climate Sciences Center"
 PROCESSING_LEVEL='Gridded Vegetation Projections';
 ACKNOWLEDGMENT="Please reference the Northwest Climate Science Center (NW CSC) US Geological Survey Grant Number G11AC20256 and the references included herein. We acknowledge the World Climate Research Programme's Working Group on Coupled Modelling, which is responsible for CMIP, and we thank the climate modeling groups for producing and making available their model output. For CMIP the U.S. Department of Energy's Program for Climate Model Diagnosis and Intercomparison provides coordinating support and led development of software infrastructure in partnership with the Global Organization for Earth System Science Portals.";
 
+#hard coded down below
 #GEOSPATIAL_LAT_MIN=31
 #GEOSPATIAL_LAT_MAX=49.4
 #GEOSPATIAL_LON_MIN=-103
@@ -66,89 +76,90 @@ DATE_ISSUED='2014-08-06'
 
 GEOSPATIAL_LAT_UNITS='decimal degrees north'
 GEOSPATIAL_LON_UNITS='decimal degrees east'
-GEOSPATIAL_LAT_RESOLUTION='Only applicable in rotated coordinates. See "geospatial comment".' #??????
-GEOSPATIAL_LON_RESOLUTION='Only applicable in rotated coordinates. See "geospatial comment".' #??????
+#GEOSPATIAL_LAT_RESOLUTION=0.0417000018060207 #hard coded below
+#GEOSPATIAL_LON_RESOLUTION=0.0417000018060207 #hard coded below
 GEOSPATIAL_VERTICAL_UNITS='None'
-GEOSPATIAL_VERTICAL_RESOLUTION='0'
+#GEOSPATIAL_VERTICAL_RESOLUTION=0  #hard coded below
 GEOSPATIAL_VERTICAL_POSITIVE='Up'
 
 #========================================================
 #    PERFORM REPLACEMENTS USING NCL
 #========================================================
-MODELS=("GFDL-ESM2M" "HadGEM2-ES" "MIROC5")
+#MODELS=("GFDL-ESM2M" "HadGEM2-ES" "MIROC5")
+MODELS=("GFDL-ESM2M")
 for model in "${MODELS[@]}"
 do
-        cd "$model" 
+        #cd "$model" 
 
         for i in *.nc;do
                 echo $i
 		#=============
 		#  HIGHLY RECOMMENDED 
 		#=============
-                ncatted -O -h -a title,global,m,c,"$TITLE" $i
-                ncatted -O -h -a summary,global,m,c,"$SUMMARY" $i
-                #ncatted -O -h -a keywords,global,m,c,"$KEYWORDS" $i
+                ncatted -O -h -a title,global,c,c,"$TITLE" $i
+                ncatted -O -h -a summary,global,c,c,"$SUMMARY" $i
+                #ncatted -O -h -a keywords,global,c,c,"$KEYWORDS" $i
 
 		#=============
 		#  RECOMMENDED 
 		#=============
-                ncatted -O -h -a id,global,m,c,"$ID" $i
-                ncatted -O -h -a naming_authority,global,m,c,"$NAMINGAUTHORITY" $i
-                #ncatted -O -h -a keywords_vocabulary,global,m,c,"$KEYWORDS_VOCABULARY" $i
-                ncatted -O -h -a cdm_data_type,global,m,c,"$CDM_DATA_TYPE" $i
-                #ncatted -O -h -a history,global,m,c,"$HISTORY" $i
-                #ncatted -O -h -a comment,global,m,c,"$COMMENT" $i
+                ncatted -O -h -a id,global,c,c,"$ID" $i
+                ncatted -O -h -a naming_authority,global,c,c,"$NAMINGAUTHORITY" $i
+                #ncatted -O -h -a keywords_vocabulary,global,c,c,"$KEYWORDS_VOCABULARY" $i
+                ncatted -O -h -a cdm_data_type,global,c,c,"$CDM_DATA_TYPE" $i
+                #ncatted -O -h -a history,global,c,c,"$HISTORY" $i
+                #ncatted -O -h -a comment,global,c,c,"$COMMENT" $i
 
-                ncatted -O -h -a date_created,global,m,c,"$DATE_CREATED" $i
-                ncatted -O -h -a creator_name,global,m,c,"$CREATOR_NAME" $i
-                ncatted -O -h -a creator_url,global,m,c,"$CREATOR_URL" $i
-                ncatted -O -h -a creator_role,global,m,c,"$CREATOR_ROLE" $i
-                ncatted -O -h -a creator_email,global,m,c,"$CREATOR_EMAIL" $i
-                #ncatted -O -h -a institution,global,m,c,"$INSTITUTION" $i
+                ncatted -O -h -a date_created,global,c,c,"$DATE_CREATED" $i
+                ncatted -O -h -a creator_name,global,c,c,"$CREATOR_NAME" $i
+                ncatted -O -h -a creator_url,global,c,c,"$CREATOR_URL" $i
+                ncatted -O -h -a creator_role,global,c,c,"$CREATOR_ROLE" $i
+                ncatted -O -h -a creator_email,global,c,c,"$CREATOR_EMAIL" $i
+                #ncatted -O -h -a institution,global,c,c,"$INSTITUTION" $i
             
-		#ncatted -O -h -a project,global,m,c,"$PROJECT" $i
-                ncatted -O -h -a processing_level,global,m,c,"$PROCESSING_LEVEL" $i
-                ncatted -O -h -a acknowledgment,global,m,c,"$ACKNOWLEDGMENT" $i
+		#ncatted -O -h -a project,global,c,c,"$PROJECT" $i
+                ncatted -O -h -a processing_level,global,c,c,"$PROCESSING_LEVEL" $i
+                ncatted -O -h -a acknowledgment,global,c,c,"$ACKNOWLEDGMENT" $i
 
 		#might need to hard code these values directly here
- 		ncatted -O -h -a geospatial_lat_min,global,m,f,GEOSPATIAL_LAT_MIN $i
-                ncatted -O -h -a geospatial_lat_max,global,m,f,GEOSPATIAL_LAT_MAX $i
-                ncatted -O -h -a geospatial_lon_min,global,m,f,GEOSPATIAL_LON_MIN $i
-                ncatted -O -h -a geospatial_lon_max,global,m,f,GEOSPATIAL_LON_MAX $i
-                ncatted -O -h -a geospatial_vertical_min,global,m,f,GEOSPATIAL_VERTICAL_MIN $i
-                ncatted -O -h -a geospatial_vertical_max,global,m,f,GEOSPATIAL_VERTICAL_MAX $i
+ 		ncatted -O -h -a geospatial_lat_min,global,m,f,31 $i
+                ncatted -O -h -a geospatial_lat_max,global,m,f,49.4 $i
+                ncatted -O -h -a geospatial_lon_min,global,m,f,-103 $i
+                ncatted -O -h -a geospatial_lon_max,global,m,f,-125 $i
+                ncatted -O -h -a geospatial_vertical_min,global,m,f,0 $i
+                ncatted -O -h -a geospatial_vertical_max,global,m,f,0 $i
 
-  		ncatted -O -h -a time_coverage_start,global,m,c,"$TIME_COVERAGE_START" $i
-                ncatted -O -h -a time_coverage_end,global,m,c,"$TIME_COVERAGE_END" $i
-  		ncatted -O -h -a time_coverage_duration,global,m,c,"$TIME_COVERAGE_DURATION" $i
-                ncatted -O -h -a time_coverage_resolution,global,m,c,"$TIME_COVERAGE_RESOLUTION" $i
+  		ncatted -O -h -a time_coverage_start,global,c,c,"$TIME_COVERAGE_START" $i
+                ncatted -O -h -a time_coverage_end,global,c,c,"$TIME_COVERAGE_END" $i
+  		ncatted -O -h -a time_coverage_duration,global,c,c,"$TIME_COVERAGE_DURATION" $i
+                ncatted -O -h -a time_coverage_resolution,global,c,c,"$TIME_COVERAGE_RESOLUTION" $i
 
 
-                ncatted -O -h -a standard_name_vocabulary,global,m,c,"$STANDARD_NAME_VOCABULARY" $i
-                ncatted -O -h -a license,global,m,c,"$LICENSE" $i
+                ncatted -O -h -a standard_name_vocabulary,global,c,c,"$STANDARD_NAME_VOCABULARY" $i
+                ncatted -O -h -a license,global,c,c,"$LICENSE" $i
 
 		#=============
 		#   SUGGESTED
 		#=============
-                ncatted -O -h -a contributor_name,global,m,c,"$CONTRIBUTOR_NAME" $i
-                ncatted -O -h -a contributor_role,global,m,c,"$CONTRIBUTOR_ROLE" $i
-                ncatted -O -h -a contributor_email,global,m,c,"$CONTRIBUTOR_EMAIL" $i
+                ncatted -O -h -a contributor_name,global,c,c,"$CONTRIBUTOR_NAME" $i
+                ncatted -O -h -a contributor_role,global,c,c,"$CONTRIBUTOR_ROLE" $i
+                ncatted -O -h -a contributor_email,global,c,c,"$CONTRIBUTOR_EMAIL" $i
 
-		ncatted -O -h -a publisher_name,global,m,c,"$PUBLISHERNAME" $i
-                ncatted -O -h -a publisher_url,global,m,c,"$PUBLISHERURL" $i
-                ncatted -O -h -a publisher_email,global,m,c,"$PUBLISHEREMAIL" $i
+		ncatted -O -h -a publisher_name,global,c,c,"$PUBLISHERNAME" $i
+                ncatted -O -h -a publisher_url,global,c,c,"$PUBLISHERURL" $i
+                ncatted -O -h -a publisher_email,global,c,c,"$PUBLISHEREMAIL" $i
 
-                ncatted -O -h -a date_modified,global,m,c,"$DATE_MODIFIED" $i
-                ncatted -O -h -a date_issued,global,m,c,"$DATE_ISSUED" $i
+                ncatted -O -h -a date_modified,global,c,c,"$DATE_MODIFIED" $i
+                ncatted -O -h -a date_issued,global,c,c,"$DATE_ISSUED" $i
 
-                ncatted -O -h -a geospatial_lat_units,global,m,f,GEOSPATIAL_LAT_UNITS $i
-                ncatted -O -h -a geospatial_lat_resolution,global,m,f,GEOSPATIAL_LAT_RESOLUTION $i
-                ncatted -O -h -a geospatial_lon_units,global,m,f,GEOSPATIAL_LON_UNITS $i
-                ncatted -O -h -a geospatial_lon_resolution,global,m,f,GEOSPATIAL_LON_RESOLUTION $i
-                ncatted -O -h -a geospatial_vertical_units,global,m,c,"$GEOSPATIAL_VERTICAL_UNITS" $i
-                ncatted -O -h -a geospatial_vertical_resolution,global,m,c,"$GEOSPATIAL_VERTICAL_RESOLUTION" $i
-                ncatted -O -h -a geospatial_vertical_positive,global,m,c,"$GEOSPATIAL_VERTICAL_POSITIVE" $i
+                ncatted -O -h -a geospatial_lat_units,global,c,c,"$GEOSPATIAL_LAT_UNITS" $i
+                ncatted -O -h -a geospatial_lat_resolution,global,m,f,0.0417000018060207 $i
+                ncatted -O -h -a geospatial_lon_units,global,c,c,"$GEOSPATIAL_LON_UNITS" $i
+                ncatted -O -h -a geospatial_lon_resolution,global,m,f,0.0417000018060207 $i
+                ncatted -O -h -a geospatial_vertical_units,global,c,c,"$GEOSPATIAL_VERTICAL_UNITS" $i
+                ncatted -O -h -a geospatial_vertical_resolution,global,c,f,0 $i
+                ncatted -O -h -a geospatial_vertical_positive,global,c,c,"$GEOSPATIAL_VERTICAL_POSITIVE" $i
         done
-        cd ../
+        #cd ../
 done
 
