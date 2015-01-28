@@ -58,8 +58,8 @@ PUBLISHERNAME="Northwest Knowledge Network"
 PUBLISHEREMAIL="info@northwestknowledge.net"
 PUBLISHERURL="http://www.northwestknowledge.net"
 
-DATE_MODIFIED ='2014-09-22'
-DATE_ISSUED ='2014-09-22'
+DATE_MODIFIED='2014-09-22'
+DATE_ISSUED='2014-09-22'
 
 GEOSPATIAL_LAT_UNITS='decimal degrees north'
 GEOSPATIAL_LON_UNITS='decimal degrees east'
