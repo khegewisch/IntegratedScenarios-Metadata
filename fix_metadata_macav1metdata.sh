@@ -4,6 +4,13 @@
 #http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/formats/DataDiscoveryAttConvention.html
 #and consistent with other projects in Integrate Scenarios of Pacific Northwest
 
+#notes: if the attribute is not currently in the file, we have to create the attribute with mode c like:
+#ncatted -O -h -a publisher_email,global,c,c,"$PUBLISHEREMAIL" $i
+#whereas if it already exists, we just have to modify it with mode m like:
+#ncatted -O -h -a publisher_email,global,m,c,"$PUBLISHEREMAIL" $i
+#however.. we can just use create c on everything and it will all work just fine
+#but if we know that the files already have a field, using mode m might increase the speed
+
 #========================================================
 #    REPLACEMENTS
 #========================================================
@@ -14,7 +21,7 @@ KEYWORDS='MACA,CMIP5,METDATA,maximum temperature,minimum temperature, precipitat
 #=============
 #  RECOMMENDED 
 #=============
-ID='';  #leave blank, NKN will have to fix later
+ID='Blank';  #leave blank, NKN will have to fix later
 NAMINGAUTHORITY="edu.uidaho.nkn"
 KEYWORDS_VOCABULARY="None"
 CDM_DATA_TYPE='GRID';
@@ -32,6 +39,7 @@ PROJECT="Regional Approaches to Climate Change(REACCH)"
 PROCESSING_LEVEL='Gridded Climate Projections';
 ACKNOWLEDGMENT="Please reference the Regional Approaches to Climate Change (REACCH) Grant Number XXXXX? and the references included herein. We acknowledge the World Climate Research Programme's Working Group on Coupled Modelling, which is responsible for CMIP, and we thank the climate modeling groups for producing and making available their model output. For CMIP the U.S. Department of Energy's Program for Climate Model Diagnosis and Intercomparison provides coordinating support and led development of software infrastructure in partnership with the Global Organization for Earth System Science Portals.";
 
+#hard coded below
 #GEOSPATIAL_LAT_MIN=25.2
 #GEOSPATIAL_LAT_MAX=49.4
 #GEOSPATIAL_LON_MIN=-103
@@ -63,10 +71,10 @@ DATE_ISSUED='2014-07-01'
 
 GEOSPATIAL_LAT_UNITS='decimal degrees north'
 GEOSPATIAL_LON_UNITS='decimal degrees east'
-GEOSPATIAL_LAT_RESOLUTION='0.0417'
-GEOSPATIAL_LON_RESOLUTION='0.0417'
+#GEOSPATIAL_LAT_RESOLUTION=0.0417
+#GEOSPATIAL_LON_RESOLUTION=0.0417 #hardcoded
 GEOSPATIAL_VERTICAL_UNITS='None'
-GEOSPATIAL_VERTICAL_RESOLUTION='0'
+GEOSPATIAL_VERTICAL_RESOLUTION=0 #hardcoded
 GEOSPATIAL_VERTICAL_POSITIVE='Up'
 
 #========================================================
@@ -109,18 +117,17 @@ do
                 ncatted -O -h -a acknowledgment,global,m,c,"$ACKNOWLEDGMENT" $i
 
 		#might need to hard code these values directly here
- 		ncatted -O -h -a geospatial_lat_min,global,m,f,GEOSPATIAL_LAT_MIN $i
-                ncatted -O -h -a geospatial_lat_max,global,m,f,GEOSPATIAL_LAT_MAX $i
-                ncatted -O -h -a geospatial_lon_min,global,m,f,GEOSPATIAL_LON_MIN $i
-                ncatted -O -h -a geospatial_lon_max,global,m,f,GEOSPATIAL_LON_MAX $i
-                ncatted -O -h -a geospatial_vertical_min,global,m,f,GEOSPATIAL_VERTICAL_MIN $i
-                ncatted -O -h -a geospatial_vertical_max,global,m,f,GEOSPATIAL_VERTICAL_MAX $i
+ 		ncatted -O -h -a geospatial_lat_min,global,m,f,25.2 $i
+                ncatted -O -h -a geospatial_lat_max,global,m,f,49.4 $i
+                ncatted -O -h -a geospatial_lon_min,global,m,f,-103 $i
+                ncatted -O -h -a geospatial_lon_max,global,m,f,-125 $i
+                ncatted -O -h -a geospatial_vertical_min,global,m,f,0 $i
+                ncatted -O -h -a geospatial_vertical_max,global,m,f,0 $i
 
   		ncatted -O -h -a time_coverage_start,global,m,c,"$TIME_COVERAGE_START" $i
                 ncatted -O -h -a time_coverage_end,global,m,c,"$TIME_COVERAGE_END" $i
   		ncatted -O -h -a time_coverage_duration,global,m,c,"$TIME_COVERAGE_DURATION" $i
                 ncatted -O -h -a time_coverage_resolution,global,m,c,"$TIME_COVERAGE_RESOLUTION" $i
-
 
                 ncatted -O -h -a standard_name_vocabulary,global,m,c,"$STANDARD_NAME_VOCABULARY" $i
                 ncatted -O -h -a license,global,m,c,"$LICENSE" $i
@@ -139,12 +146,12 @@ do
                 ncatted -O -h -a date_modified,global,m,c,"$DATE_MODIFIED" $i
                 ncatted -O -h -a date_issued,global,m,c,"$DATE_ISSUED" $i
 
-                ncatted -O -h -a geospatial_lat_units,global,m,f,GEOSPATIAL_LAT_UNITS $i
-                ncatted -O -h -a geospatial_lat_resolution,global,m,f,GEOSPATIAL_LAT_RESOLUTION $i
-                ncatted -O -h -a geospatial_lon_units,global,m,f,GEOSPATIAL_LON_UNITS $i
-                ncatted -O -h -a geospatial_lon_resolution,global,m,f,GEOSPATIAL_LON_RESOLUTION $i
+                ncatted -O -h -a geospatial_lat_units,global,m,c,"$GEOSPATIAL_LAT_UNITS" $i
+                ncatted -O -h -a geospatial_lat_resolution,global,m,f,0.0417 $i
+                ncatted -O -h -a geospatial_lon_units,global,m,c,"$GEOSPATIAL_LON_UNITS" $i
+                ncatted -O -h -a geospatial_lon_resolution,global,m,f,0.0417 $i
                 ncatted -O -h -a geospatial_vertical_units,global,m,c,"$GEOSPATIAL_VERTICAL_UNITS" $i
-                ncatted -O -h -a geospatial_vertical_resolution,global,m,c,"$GEOSPATIAL_VERTICAL_RESOLUTION" $i
+                ncatted -O -h -a geospatial_vertical_resolution,global,m,f,0 $i
                 ncatted -O -h -a geospatial_vertical_positive,global,m,c,"$GEOSPATIAL_VERTICAL_POSITIVE" $i
         done
         cd ../
