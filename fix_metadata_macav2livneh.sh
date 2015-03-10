@@ -54,7 +54,9 @@ ACKNOWLEDGMENT="Please reference the Northwest Climate Science Center (NW CSC) U
 #TIME_COVERAGE_RESOLUTION='P1D';
 
 STANDARD_NAME_VOCABULARY='CF-1.0';
-LICENSE='No restrictions';
+#LICENSE='No restrictions';
+LICENSE= 'Creative Commons CC0 1.0 Universal Dedication(http://creativecommons.org/publicdomain/zero/1.0/legalcode)'
+#LICENSE URI='http://creativecommons.org/publicdomain/zero/1.0/legalcode'
 
 #=============
 #  SUGGESTED 
