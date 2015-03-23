@@ -14,29 +14,29 @@
 #========================================================
 #    REPLACEMENTS
 #========================================================
-TITLE='MACAv1-METDATA statistically downscaled climate simulations using CMIP5 forcings over the contiguous USA.';  #describes project
-SUMMARY='This archive contains monthly timestep and 4-km resolution meteorological outputs for the western United States produced by MACAv1-METDATA(Multivariate Adaptive Constructed Analogs) statistical downscaling method by Abatzoglou, Brown, 2011 performed on daily outputs from global climate model simulations of the the historical (1950-2005) and future RCP4.5/8.5 (2006-2099) scenarios from Phase 5 of the Coupled Model Intercomparison Project (CMIP5) utilizing the Livneh et al (2013) training dataset.';
-KEYWORDS='MACA,CMIP5,METDATA,maximum temperature,minimum temperature, precipitation amount, downward shortwave solar radiation, wind components, specific humidity, relative humidity';
+TITLE="MACAv1-METDATA statistically downscaled climate simulations using CMIP5 forcings over the contiguous USA.";  #describes project
+SUMMARY="This archive contains monthly timestep and 4-km resolution meteorological outputs for the western United States produced by MACAv1-METDATA(Multivariate Adaptive Constructed Analogs) statistical downscaling method by Abatzoglou, Brown, 2011 performed on daily outputs from global climate model simulations of the the historical (1950-2005) and future RCP4.5/8.5 (2006-2099) scenarios from Phase 5 of the Coupled Model Intercomparison Project (CMIP5) utilizing the Livneh et al (2013) training dataset.";
+KEYWORDS="MACA,CMIP5,METDATA,maximum temperature,minimum temperature, precipitation amount, downward shortwave solar radiation, wind components, specific humidity, relative humidity";
 
 #=============
 #  RECOMMENDED 
 #=============
-ID='Blank';  #leave blank, NKN will have to fix later
+ID="Blank";  #leave blank, NKN will have to fix later
 NAMINGAUTHORITY="edu.uidaho.nkn"
 KEYWORDS_VOCABULARY="None"
-CDM_DATA_TYPE='GRID';
+CDM_DATA_TYPE="GRID";
 HISTORY="Created by Katherine Hegewisch,University of Idaho, Department of Geography, Applied Climate Science Lab";
 #would need to run over the models and enter the right info here
 #COMMENT="Monthly outputs have been aggregated from daily outputs of the MACA downscaling of daily outputs from r1i1p1 ensemble, CCSM4 GCM (from University of Miami - RSMAS). The projection information for this file is GCS WGS 1984."   #probably we should agree to add the crs variable to give projection
 
 DATE_CREATED="?"   #need to check when it was original created
-CREATOR_NAME='John Abatzoglou';
-CREATOR_URL='http://climate.nkn.uidaho.edu/MACA/'
-CREATOR_ROLE='Principal Investigator';
-CREATOR_EMAIL='jabatzoglou@uidaho.edu';
+CREATOR_NAME="John Abatzoglou";
+CREATOR_URL="http://climate.nkn.uidaho.edu/MACA/";
+CREATOR_ROLE="Principal Investigator";
+CREATOR_EMAIL="jabatzoglou@uidaho.edu";
 #INSTITUTION="University of Idaho";
-PROJECT="Regional Approaches to Climate Change(REACCH)"
-PROCESSING_LEVEL='Gridded Climate Projections';
+PROJECT="Regional Approaches to Climate Change(REACCH)";
+PROCESSING_LEVEL="Gridded Climate Projections";
 ACKNOWLEDGMENT="Please reference the Regional Approaches to Climate Change (REACCH) Grant Number XXXXX? and the references included herein. We acknowledge the World Climate Research Programme's Working Group on Coupled Modelling, which is responsible for CMIP, and we thank the climate modeling groups for producing and making available their model output. For CMIP the U.S. Department of Energy's Program for Climate Model Diagnosis and Intercomparison provides coordinating support and led development of software infrastructure in partnership with the Global Organization for Earth System Science Portals.";
 
 #hard coded below
@@ -53,31 +53,31 @@ ACKNOWLEDGMENT="Please reference the Regional Approaches to Climate Change (REAC
 #TIME_COVERAGE_DURATION='P10Y';    #for most files except end ones
 TIME_COVERAGE_RESOLUTION='P1D';
 
-STANDARD_NAME_VOCABULARY='CF-1.0';
+STANDARD_NAME_VOCABULARY="CF-1.0";
 #LICENSE='No restrictions';
-LICENSE= 'Creative Commons CC0 1.0 Universal Dedication(http://creativecommons.org/publicdomain/zero/1.0/legalcode)'
+LICENSE="Creative Commons CC0 1.0 Universal Dedication(http://creativecommons.org/publicdomain/zero/1.0/legalcode)";
 #LICENSE URI='http://creativecommons.org/publicdomain/zero/1.0/legalcode'
 
 #=============
 #  SUGGESTED 
 #=============
-CONTRIBUTOR_NAME='Katherine Hegewisch';
-CONTRIBUTOR_ROLE='Postdoctoral Fellow';
-CONTRIBUTOR_EMAIL='khegewisch@uidaho.edu';
+CONTRIBUTOR_NAME="Katherine Hegewisch";
+CONTRIBUTOR_ROLE="Postdoctoral Fellow";
+CONTRIBUTOR_EMAIL="khegewisch@uidaho.edu";
 PUBLISHERNAME="Northwest Knowledge Network"
 PUBLISHEREMAIL="info@northwestknowledge.net"
 PUBLISHERURL="http://www.northwestknowledge.net"
 
-DATE_MODIFIED='2014-07-01'
-DATE_ISSUED='2014-07-01'
+DATE_MODIFIED="2014-07-01";
+DATE_ISSUED="2014-07-01";
 
-GEOSPATIAL_LAT_UNITS='decimal degrees north'
-GEOSPATIAL_LON_UNITS='decimal degrees east'
+GEOSPATIAL_LAT_UNITS="decimal degrees north";
+GEOSPATIAL_LON_UNITS="decimal degrees east";
 #GEOSPATIAL_LAT_RESOLUTION=0.0417
 #GEOSPATIAL_LON_RESOLUTION=0.0417 #hardcoded
-GEOSPATIAL_VERTICAL_UNITS='None'
+GEOSPATIAL_VERTICAL_UNITS="None";
 GEOSPATIAL_VERTICAL_RESOLUTION=0 #hardcoded
-GEOSPATIAL_VERTICAL_POSITIVE='Up'
+GEOSPATIAL_VERTICAL_POSITIVE="Up";
 
 #========================================================
 #    PERFORM REPLACEMENTS USING NCL
