@@ -81,7 +81,20 @@ GEOSPATIAL_VERTICAL_POSITIVE="Up";
 #========================================================
 MODELS=("bcc-csm1-1-m" "CanESM2" "CCSM4" "CNRM-CM5" "CSIRO-Mk3-6-0" "HadGEM2-ES365" "HadGEM2-CC365" "IPSL-CM5A-MR" "MIROC5" "NorESM1-M")
 
-#GCMSOURCE="CMIP5: CCSM4 (University of Miami -RSMAS) global climate model, historical scenario, r6i1p1 ensemble run"
+MODELINGCENTER=(
+"Beijing Climate Center, China Meteorological Administration"
+"Canadian Centre for Climate Modelling and Analysis"
+"National Center for Atmospheric Research"
+"Centre National de Recherches Météorologiques /Centre Européen de Recherche et Formation Avancées en Calcul Scientifique"
+"Commonwealth Scientific and Industrial Research Organization in collaboration with Queensland Climate Change Centre of Excellence"
+"Met Office Hadley Centre"
+"Met Office Hadley Centre"
+"Institute Pierre-Simon Laplace"
+"Meteorological Research Institute"
+"Atmosphere and Ocean Research Institute (The University of Tokyo), National Institute for Environmental Studies, and Japan Agency for Marine-Earth Science and Technology"
+"Norwegian Climate Centre"
+)
+
 MODELNAME=(
 "Beijing Climate Center, China Meteorological Administration"
 "Canadian Centre for Climate Modelling and Analysis"

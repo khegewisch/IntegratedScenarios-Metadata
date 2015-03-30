@@ -86,7 +86,7 @@ GEOSPATIAL_VERTICAL_POSITIVE='Up'
 #========================================================
 MODELS=("GFDL-ESM2M" "HadGEM2-ES" "MIROC5")
 #GCMSOURCE="CMIP5: CCSM4 (University of Miami -RSMAS) global climate model, historical scenario, r6i1p1 ensemble run"
-MODELNAME=("NOAA Geophysical Fluid Dynamics Laboratory" "Met Office Hadley Centre" "Atmosphere and Ocean Research Institute (The University of Tokyo), National Institude for Environmental Studies, and Japan Agency for Marine-Earth Science and Technology")
+MODELNAME=("NOAA Geophysical Fluid Dynamics Laboratory" "Met Office Hadley Centre" "Atmosphere and Ocean Research Institute (The University of Tokyo), National Institute for Environmental Studies, and Japan Agency for Marine-Earth Science and Technology")
 $modelnum=0
 for model in "${MODELS[@]}"
 do

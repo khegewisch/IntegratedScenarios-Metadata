@@ -83,29 +83,29 @@ GEOSPATIAL_VERTICAL_POSITIVE="Up";
 #========================================================
 MODELS=("bcc-csm1-1" "bcc-csm1-1-m" "BNU-ESM" "CanESM2" "CCSM4" "CNRM-CM5" "CSIRO-Mk3-6-0" "inmcm4" "MIROC5" "GFDL-ESM2G" "GFDL-ESM2M" "HadGEM2-ES365" "HadGEM2-CC365" "IPSL-CM5B-LR" "IPSL-CM5A-MR" "IPSL-CM5A-LR" "MRI-CGCM3" "MIROC-ESM" "MIROC-ESM-CHEM" "NorESM1-M")
 
-#GCMSOURCE="CMIP5: CCSM4 (University of Miami -RSMAS) global climate model, historical scenario, r6i1p1 ensemble run"
+
 MODELNAME=(
 "Beijing Climate Center, China Meteorological Administration"
 "Beijing Climate Center, China Meteorological Administration"
 "Canadian Centre for Climate Modelling and Analysis"
 "College of Global Change and Earth System Science, Beijing Normal University"
-"University of Miami - RSMAS"
-"Centre National de Recherches Meteorologiques /Centre Europeen de Recherche et Formation Avancees en Calcul Scientifique"
+"National Center for Atmospheric Research"
+"Centre National de Recherches Météorologiques /Centre Européen de Recherche et Formation Avancées en Calcul Scientifique"
 "Commonwealth Scientific and Industrial Research Organization in collaboration with Queensland Climate Change Centre of Excellence"
 "Institute for Numerical Mathematics"
-"Atmosphere and Ocean Research Institute (The University of Tokyo), National Institude for Environmental Studies, and Japan Agency for Marine-Earth Science and Technology"
-"NOAA Geophysical Fluid Dynamics Laboratory" 
-"NOAA Geophysical Fluid Dynamics Laboratory" 
-"Met Office Hadley Centre" 
-"Met Office Hadley Centre" 
+"Atmosphere and Ocean Research Institute (The University of Tokyo), National Institute for Environmental Studies, and Japan Agency for Marine-Earth Science and Technology"
+"NOAA Geophysical Fluid Dynamics Laboratory"
+"NOAA Geophysical Fluid Dynamics Laboratory"
+"Met Office Hadley Centre"
+"Met Office Hadley Centre"
 "Institute Pierre-Simon Laplace"
 "Institute Pierre-Simon Laplace"
 "Institute Pierre-Simon Laplace"
 "Meteorological Research Institute"
 "Japan Agency for Marine-Earth Science and Technology, Atmosphere and Ocean Research Institute (The University of Tokyo), and National Institute for Environmental Studies"
+"Japan Agency for Marine-Earth Science and Technology, Atmosphere and Ocean Research Institute (The University of Tokyo), and National Institute for Environmental Studies"
 "Norwegian Climate Centre"
 )
-
 
 
 $modelnum=0
