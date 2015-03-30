@@ -14,9 +14,9 @@
 #========================================================
 #    REPLACEMENTS
 #========================================================
-TITLE="MACAv2-Livneh statistically downscaled climate simulations using CMIP5 forcings over the contiguous USA."
-SUMMARY="This archive contains meteorological variables at the daily timestep and 1/16-degree resolution for the contiguous United States produced by the MACAv2-LIVNEH (Multivariate Adaptive Constructed Analogs) statistical downscaling method (Abatzoglou and Brown, 2012) performed on daily outputs from global climate model simulations of the historical (1950-2005) and future RCP4.5/8.5 (2006-2099) scenarios of the Coupled Model Intercomparison Project Phase 5 (CMIP5) utilizing the Livneh et al (2013) training dataset.  The MACA method removes biases in the global model variables and spatially downscales them using a variation of the constructed analogs method. To be consistent with the observed calendar, leap days have been added to the datasets by averaging values between Feb 28 and Mar 1."
-KEYWORDS="MACA,CMIP5,LIVNEH,maximum temperature,minimum temperature, precipitation amount, downward shortwave solar radiation, wind components, specific humidity, relative humidity"
+TITLE="Variable Infiltration Capacity (VIC 4.1.2.1) hydrologic simulations using MACA-Livneh CMIP5 forcings over the western U.S"
+SUMMARY="This archive contains hydrologic fluxes and state variables at 1/16-degree resolution for the western United States produced with the Variable Infiltration Capacity (VIC; Liang et al 1994) model. VIC is a macroscale hydrologic model that solves the water and energy balance at each model grid cell and incorporates spatially distributed parameters describing topography, soils, and vegetation. The simulations were forced with statistically downscaled global climate model (GCM) simulations using the method of Multivariate Adaptive Constructed Analogs (MACAv2-Livneh; Abatzoglou and Brown 2012) and trained to Livneh et al (2013) gridded surface observations. Four downscaled meteorological variables were used at a daily timestep: (1) minimum temperature and (2) maximum temperature, (2) precipitation, and (3) average wind speed. The other variables of (1) radiation and (2) specific humidity at a daily timestep were derived using the MTCLIM (Glassy et al, 1994) algorithm. The downscaled forcings were constructed using 365-day global climate model (GCM) outputs from the Coupled Model Inter-comparison Project Phase (CMIP5). The simulations span a historical period (1950-2005) and a future period (2006-2099). For the future period, two emission scenarios were used (RCP 4.5/8.5)."
+KEYWORDS="Hydrology, VIC, Variable Infiltration Capacity Model, CMIP5, MACA statistical downscaling, water evaporation flux, surface runoff flux, subsurface runoff flux, snow melt flux, soil moisture content per layer, soil temperature per layer, liquid water content of snow, net heat flux into ground, surface upward latent heat flux, surface upward latent heat from sublimation flux, surface upward sensible heat flux, effective skin temperature, incoming downward shortwave flux, incoming downward longwave flux, net downward shortwave flux, net downward longwave flux, net downward radiation flux, precipitation flux, specific humidity, potential evaporation flux saturated soil, potential evaporation flux open water, potential evaporation flux shortref grass, potential evaporation flux tallref alfalfa, potential evaporation  flux natural vegetation, transpiration flux, runoff flux, soil moisture content, Evaporation, Ground, Latent, LatentSub, Longwave, LongwaveNet, petH2OSurf, petNatVeg, petSatSoil, petShort, petTall, Precip, Qair, Qs, Qsb, Qsm, Rnet, Sensible, Shortwave, ShortwaveNet, SoilMoist, SoilTemp, SurfTemp, SWE, Transp, TotalSoilMoist, TotalRunoff"
 
 #=============
 #  RECOMMENDED 
@@ -25,20 +25,20 @@ ID="Blank";  #leave blank, NKN will have to fix later
 NAMINGAUTHORITY="edu.uidaho.nkn"
 KEYWORDS_VOCABULARY="None"
 CDM_DATA_TYPE="GRID";
-HISTORY="Created by Katherine Hegewisch,University of Idaho, Department of Geography, Applied Climate Science Lab.Revision 1: The leap years in the previous version were corrected, as they had been set to the first year in each datafile erroneously upon making the netcdf files."
+HISTORY="Created by by Matt Stumbaugh, University of Washington, Civil and Environmental Engineering, Land Surface Hydrology Group"
 
 
-DATE_CREATED="2014-02-01"
-CREATOR_NAME="John Abatzoglou";
-CREATOR_URL="http://climate.nkn.uidaho.edu/MACA/"
+DATE_CREATED=" - - "
+CREATOR_NAME=""
+CREATOR_URL=""
 CREATOR_ROLE="Principal Investigator";
-CREATOR_EMAIL="jabatzoglou@uidaho.edu";
-#INSTITUTION="University of Idaho";
-#PROJECT="Integrated Scenarios Project of the Northwest Climate Sciences Center"
-PROCESSING_LEVEL="Gridded Climate Projections";
+CREATOR_EMAIL=""
+#INSTITUTION="University of Washington";
+PROJECT="Integrated Scenarios Project of the Northwest Climate Sciences Center"
+PROCESSING_LEVEL="Gridded Hydrologic Projections";
 ACKNOWLEDGMENT="Please reference the Northwest Climate Science Center (NW CSC) US Geological Survey Grant Number G12AC20495 and the references included herein. We acknowledge the World Climate Research Programme's Working Group on Coupled Modeling, which is responsible for CMIP, and we thank the climate modeling groups for producing and making available their model output. For CMIP, the U.S. Department of Energy's Program for Climate Model Diagnosis and Intercomparison provides coordinating support and led development of software infrastructure in partnership with the Global Organization for Earth System Science Portals."
 
-#hard coded down below
+#hard coded down below  (need to change these for VIC... WUSA not CONUS)
 #GEOSPATIAL_LAT_MIN=25.2
 #GEOSPATIAL_LAT_MAX=52.8
 #GEOSPATIAL_LON_MIN=-67
@@ -53,22 +53,20 @@ ACKNOWLEDGMENT="Please reference the Northwest Climate Science Center (NW CSC) U
 #TIME_COVERAGE_RESOLUTION="P1D";
 
 STANDARD_NAME_VOCABULARY="CF-1.0";
-#LICENSE='No restrictions';
-LICENSE="Creative Commons CC0 1.0 Universal Dedication(http://creativecommons.org/publicdomain/zero/1.0/legalcode)";
-#LICENSE URI='http://creativecommons.org/publicdomain/zero/1.0/legalcode'
+LICENSE='No restrictions';
 
 #=============
 #  SUGGESTED 
 #=============
-CONTRIBUTOR_NAME="Katherine Hegewisch";
-CONTRIBUTOR_ROLE="Postdoctoral Fellow";
-CONTRIBUTOR_EMAIL="khegewisch@uidaho.edu";
+CONTRIBUTOR_NAME="Matt Stumbaugh"
+CONTRIBUTOR_ROLE=" "
+CONTRIBUTOR_EMAIL=""
 PUBLISHERNAME="Northwest Knowledge Network"
 PUBLISHEREMAIL="info@northwestknowledge.net"
 PUBLISHERURL="http://www.northwestknowledge.net"
 
-DATE_MODIFIED="2014-09-22";
-DATE_ISSUED="2014-09-22";
+DATE_MODIFIED=" - - ";
+DATE_ISSUED=" - -";
 
 GEOSPATIAL_LAT_UNITS="decimal degrees north";
 GEOSPATIAL_LON_UNITS="decimal degrees east";
@@ -81,28 +79,19 @@ GEOSPATIAL_VERTICAL_POSITIVE="Up";
 #========================================================
 #    PERFORM REPLACEMENTS USING NCL
 #========================================================
-MODELS=("bcc-csm1-1" "bcc-csm1-1-m" "BNU-ESM" "CanESM2" "CCSM4" "CNRM-CM5" "CSIRO-Mk3-6-0" "inmcm4" "MIROC5" "GFDL-ESM2G" "GFDL-ESM2M" "HadGEM2-ES365" "HadGEM2-CC365" "IPSL-CM5B-LR" "IPSL-CM5A-MR" "IPSL-CM5A-LR" "MRI-CGCM3" "MIROC-ESM" "MIROC-ESM-CHEM" "NorESM1-M")
+MODELS=("bcc-csm1-1-m" "CanESM2" "CCSM4" "CNRM-CM5" "CSIRO-Mk3-6-0" "HadGEM2-ES365" "HadGEM2-CC365" "IPSL-CM5A-MR" "MIROC5" "NorESM1-M")
 
 #GCMSOURCE="CMIP5: CCSM4 (University of Miami -RSMAS) global climate model, historical scenario, r6i1p1 ensemble run"
 MODELNAME=(
 "Beijing Climate Center, China Meteorological Administration"
-"Beijing Climate Center, China Meteorological Administration"
 "Canadian Centre for Climate Modelling and Analysis"
-"College of Global Change and Earth System Science, Beijing Normal University"
 "University of Miami - RSMAS"
 "Centre National de Recherches Meteorologiques /Centre Europeen de Recherche et Formation Avancees en Calcul Scientifique"
 "Commonwealth Scientific and Industrial Research Organization in collaboration with Queensland Climate Change Centre of Excellence"
-"Institute for Numerical Mathematics"
+"Met Office Hadley Centre" 
+"Met Office Hadley Centre" 
+"Institute Pierre-Simon Laplace"
 "Atmosphere and Ocean Research Institute (The University of Tokyo), National Institude for Environmental Studies, and Japan Agency for Marine-Earth Science and Technology"
-"NOAA Geophysical Fluid Dynamics Laboratory" 
-"NOAA Geophysical Fluid Dynamics Laboratory" 
-"Met Office Hadley Centre" 
-"Met Office Hadley Centre" 
-"Institute Pierre-Simon Laplace"
-"Institute Pierre-Simon Laplace"
-"Institute Pierre-Simon Laplace"
-"Meteorological Research Institute"
-"Japan Agency for Marine-Earth Science and Technology, Atmosphere and Ocean Research Institute (The University of Tokyo), and National Institute for Environmental Studies"
 "Norwegian Climate Centre"
 )
 
@@ -114,11 +103,12 @@ do
         cd "$model"
         $modelnum=$modelnum+1;
         $modelname=MODELNAME($modelnum)
+
 	$runnum="1"
-        if["$model" -eq "CCSM4"]
+	if["$model" -eq "CCSM4"]
         then 
-                $runnum="6"
-        fi
+		$runnum="6"
+	fi
 
         for i in *historical*.nc;do
                 $scenname="historical"

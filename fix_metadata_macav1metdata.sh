@@ -14,9 +14,9 @@
 #========================================================
 #    REPLACEMENTS
 #========================================================
-TITLE="MACAv1-METDATA statistically downscaled climate simulations using CMIP5 forcings over the contiguous USA.";  #describes project
-SUMMARY="This archive contains monthly timestep and 4-km resolution meteorological outputs for the western United States produced by MACAv1-METDATA(Multivariate Adaptive Constructed Analogs) statistical downscaling method by Abatzoglou, Brown, 2011 performed on daily outputs from global climate model simulations of the the historical (1950-2005) and future RCP4.5/8.5 (2006-2099) scenarios from Phase 5 of the Coupled Model Intercomparison Project (CMIP5) utilizing the Livneh et al (2013) training dataset.";
-KEYWORDS="MACA,CMIP5,METDATA,maximum temperature,minimum temperature, precipitation amount, downward shortwave solar radiation, wind components, specific humidity, relative humidity";
+TITLE="MACAv1-METDATA statistically downscaled climate simulations using CMIP5 forcings over the contiguous USA"
+SUMMARY="This archive contains meteorological variables at the monthly timestep and 1/24-deg horizontal resolution for the western United States produced by the MACAv1-METDATA (Multivariate Adaptive Constructed Analogs) statistical downscaling method (by Abatzoglou and Brown, 2012) performed on daily outputs from global climate model simulations of the historical (1950-2005) and future RCP4.5/8.5 (2006-2099) scenarios of the Coupled Model Intercomparison Project Phase 5 (CMIP5) utilizing the METDATA (Abatzoglou, 2012) training dataset. The MACA method removes biases in the global model variables and spatial downscales them using a variation of the constructed analogs method."
+KEYWORDS="MACA,CMIP5,METDATA,maximum temperature,minimum temperature, precipitation amount, downward shortwave solar radiation, wind components, specific humidity, relative humidity"
 
 #=============
 #  RECOMMENDED 
@@ -37,7 +37,7 @@ CREATOR_EMAIL="jabatzoglou@uidaho.edu";
 #INSTITUTION="University of Idaho";
 PROJECT="Regional Approaches to Climate Change(REACCH)";
 PROCESSING_LEVEL="Gridded Climate Projections";
-ACKNOWLEDGMENT="Please reference the Regional Approaches to Climate Change (REACCH) Grant Number XXXXX? and the references included herein. We acknowledge the World Climate Research Programme's Working Group on Coupled Modelling, which is responsible for CMIP, and we thank the climate modeling groups for producing and making available their model output. For CMIP the U.S. Department of Energy's Program for Climate Model Diagnosis and Intercomparison provides coordinating support and led development of software infrastructure in partnership with the Global Organization for Earth System Science Portals.";
+ACKNOWLEDGMENT="Please reference the Northwest Climate Science Center (NW CSC) US Geological Survey Grant Number G12AC20495 and the Regional Approaches to Climate Change (REACCH) USDA-NIFA Grant Number 2011-68002-30191 and the references included herein. We acknowledge the World Climate Research Programme's Working Group on Coupled Modeling, which is responsible for CMIP, and we thank the climate modeling groups for producing and making available their model output. For CMIP, the U.S. Department of Energy's Program for Climate Model Diagnosis and Intercomparison provides coordinating support and led development of software infrastructure in partnership with the Global Organization for Earth System Science Portals."
 
 #hard coded below
 #GEOSPATIAL_LAT_MIN=25.2
@@ -82,11 +82,61 @@ GEOSPATIAL_VERTICAL_POSITIVE="Up";
 #========================================================
 #    PERFORM REPLACEMENTS USING NCL
 #========================================================
-MODELS=("CNRM-CM5" "CSIRO-Mk3-6-0" "inmcm4" "MIROC5" "bcc-csm1-1" "GFDL-ESM2G" "GFDL-ESM2M" "HadGEM2-ES365" "bcc-csm1-1-m" "BNU-ESM" "NorESM1-M" "MRI-CGCM3" "CCSM4" "MIROC-ESM" "IPSL-CM5B-LR" "MIROC-ESM-CHEM" "HadGEM2-CC365" "CanESM2" "IPSL-CM5A-MR" "IPSL-CM5A-LR" "HadGEM2-ES" "HadGEM2-CC")
+MODELS=("bcc-csm1-1" "bcc-csm1-1-m" "BNU-ESM" "CanESM2" "CCSM4" "CNRM-CM5" "CSIRO-Mk3-6-0" "inmcm4" "MIROC5" "GFDL-ESM2G" "GFDL-ESM2M" "HadGEM2-ES365" "HadGEM2-CC365" "IPSL-CM5B-LR" "IPSL-CM5A-MR" "IPSL-CM5A-LR" "MRI-CGCM3" "MIROC-ESM" "MIROC-ESM-CHEM" "NorESM1-M")
 
+#GCMSOURCE="CMIP5: CCSM4 (University of Miami -RSMAS) global climate model, historical scenario, r6i1p1 ensemble run"
+MODELNAME=(
+"Beijing Climate Center, China Meteorological Administration"
+"Beijing Climate Center, China Meteorological Administration"
+"Canadian Centre for Climate Modelling and Analysis"
+"College of Global Change and Earth System Science, Beijing Normal University"
+"University of Miami - RSMAS"
+"Centre National de Recherches Meteorologiques /Centre Europeen de Recherche et Formation Avancees en Calcul Scientifique"
+"Commonwealth Scientific and Industrial Research Organization in collaboration with Queensland Climate Change Centre of Excellence"
+"Institute for Numerical Mathematics"
+"Atmosphere and Ocean Research Institute (The University of Tokyo), National Institude for Environmental Studies, and Japan Agency for Marine-Earth Science and Technology"
+"NOAA Geophysical Fluid Dynamics Laboratory"
+"NOAA Geophysical Fluid Dynamics Laboratory"
+"Met Office Hadley Centre"
+"Met Office Hadley Centre"
+"Institute Pierre-Simon Laplace"
+"Institute Pierre-Simon Laplace"
+"Institute Pierre-Simon Laplace"
+"Meteorological Research Institute"
+"Japan Agency for Marine-Earth Science and Technology, Atmosphere and Ocean Research Institute (The University of Tokyo), and National Institute for Environmental Studies"
+"Norwegian Climate Centre"
+)
+
+
+
+$modelnum=0
 for model in "${MODELS[@]}"
 do
-        cd "$model" 
+        cd "$model"
+        $modelnum=$modelnum+1;
+        $modelname=MODELNAME($modelnum)
+
+	$runnum="1"
+        if["$model" -eq "CCSM4"]
+        then
+                $runnum="6"
+        fi
+
+        for i in *historical*.nc;do
+                $scenname="historical"
+                GCMSOURCE="CMIP5:{$model} ({$modelname}) global climate model, {$scenname} scenario, r{$runnum}i1p1 ensemble run"
+                ncatted -O -h -a gcmsource,global,c,c,"$GCMSOURCE" $i
+        done
+        for i in *rcp45*.nc;do
+                $scenname="RCP 4.5"
+                GCMSOURCE="CMIP5:{$model} ({$modelname}) global climate model, {$scenname} scenario, r{$runnum}i1p1 ensemble run"
+                ncatted -O -h -a gcmsource,global,c,c,"$GCMSOURCE" $i
+        done
+         for i in *rcp85*.nc;do
+                $scenname="RCP 8.5"
+                GCMSOURCE="CMIP5:{$model} ({$modelname}) global climate model, {$scenname} scenario, r{$runnum}i1p1 ensemble run"
+                ncatted -O -h -a gcmsource,global,c,c,"$GCMSOURCE" $i
+        done
 
         for i in *.nc;do
                 echo $i
